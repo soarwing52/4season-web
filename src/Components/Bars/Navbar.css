@@ -1,0 +1,76 @@
+.main-navbar {
+  position: relative;
+  max-height: 50px;
+  background-color: rgba(248, 249, 250, 0.6);
+  padding: 1rem;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.main-navbar .navbar-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.main-navbar .d-flex {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.main-navbar .d-flex img {
+  margin-right: .5rem;
+}
+
+.main-navbar .d-flex .navbar-title {
+  font-weight: bold;
+  display: inline-block;
+  padding-top: .3125rem;
+  padding-bottom: .3125rem;
+  margin-right: 1rem;
+  font-size: 1.25rem;
+  line-height: inherit;
+  text-decoration: none;
+  text-align: center;
+  color: black;
+}
+
+.main-navbar .logout-btn {
+  height: 40px;
+  font-size: 16px;
+  text-align: center;
+  background-color: #686868;
+  border: 0;
+}
+
+.main-navbar .nav-item {
+  font-weight: bold !important;
+}
+
+@media screen and (max-width: 767px) {
+  .main-navbar .navbar-container {
+    padding-right: 0;
+    padding-left: 0;
+  }
+  .main-navbar .navbar-container img {
+    margin-right: 0;
+  }
+  .main-navbar .navbar-container .navbar-title {
+    display: none;
+  }
+}
+/*# sourceMappingURL=Navbar.css.map */
