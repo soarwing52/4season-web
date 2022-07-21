@@ -1,5 +1,5 @@
 import _axios from "axios"
-import { GetUser } from "../Authentication/UserStatus";
+import { GetUser } from "Components/Authentication/UserStatus";
 
 const axios = (baseURL) => {
     let user = GetUser();

@@ -6,7 +6,7 @@ const formatDate = (dateString) => {
     return date.toLocaleString().split(" ")[0]
 }
 
-const toDashDate = (dateString, separator) => {
+const toDashDate = (dateString, separator = "-") => {
     if (!dateString) {
         return
     }
@@ -17,6 +17,14 @@ const toDashDate = (dateString, separator) => {
     let formatted_date = `${date.getFullYear()}${separator}${monthString}${separator}${dayString}`;
     return formatted_date;
 }
+
+const DateIsBetween = (dateStringStart, dateStringEnd, dateStringSelf = new Date().toString()) => {
+    let start = new Date(dateStringStart);
+    let end = new Date(dateStringEnd);
+    let self = new Date(dateStringSelf);
+    return end > self && self > start;
+}
+
 
 const toTime = (dateString) => {
     if (!dateString) {
@@ -33,6 +41,8 @@ const toPad2 = (input) => {
 }
 
 export {
+    formatDate,
     toDashDate,
+    DateIsBetween,
     toTime,
 }

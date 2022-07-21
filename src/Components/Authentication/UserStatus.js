@@ -1,4 +1,4 @@
-import { getCookie, RemoveCookie } from 'Uitilities/cookie';
+import { getCookie, RemoveCookie } from 'Utilities/cookie';
 import jwt_decode from "jwt-decode";
 
 const AuthTokenName = 'jwt';

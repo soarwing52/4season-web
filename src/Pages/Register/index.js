@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { ImgSystemName } from '../style/images';
-import axios from "../Uitilities/axios";
+import axios from "Utilities/axios";
 import validator from 'validator';
 import { Form, Button, } from "react-bootstrap";
-import './Register.scss';
+// import './Register.scss';
 
 function Register() {
     const [AllValues, setAllValues] = useState({
@@ -68,15 +67,11 @@ function Register() {
         }
     }
     useEffect(() => {
-        import('./Login.scss');
     }, [])
 
     return (
         <div className="login-container container d-flex justify-content-center">
             <Form id="registerForm">
-                <div className="login-img">
-                    <img src={ImgSystemName} width="350" alt="logo" />
-                </div>
                 <Form.Group className="mb-3" controlId="formUserName">
                     <Form.Label>帳號</Form.Label>
                     <Form.Control

@@ -1,0 +1,24 @@
+
+@import "~bootstrap/scss/bootstrap";
+
+html *
+{
+    font-family: "microsoft jhenghei" !important;
+}
+
+.App{
+    position: relative;
+    height: 100%;
+    background-size: cover;
+    background-position: center bottom;
+    background-color: #f9fcff;
+}
+
+body {
+    background: #fff;
+    color: #090909;
+    font-size: 14px;
+    font-family: 'Raleway', sans-serif;
+    line-height: 1.80857;
+    font-weight: normal;
+}

@@ -1,9 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
-import './Login.scss';
-import { ImgSystemLogotype } from '../style/images';
 import { Form, Button, Row, Col } from "react-bootstrap";
-import axios from "../Uitilities/axios";
-import { setToken } from "../Uitilities/cookie";
+import axios from "Utilities/axios";
+import { setToken } from "Utilities/cookie";
 import ReCAPTCHA from "react-google-recaptcha";
 
 
@@ -50,9 +48,6 @@ function Login() {
     return (
         <div className="login-page container d-flex justify-content-center">
             <Form>
-                <div className="login-img">
-                    <img src={ImgSystemLogotype} width="250" alt="logo" />
-                </div>
                 <Form.Group className="mb-3" controlId="formUserName">
                     <Form.Label>帳號</Form.Label>
                     <Form.Control
