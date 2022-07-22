@@ -2,6 +2,9 @@ import React, { useState, useEffect, useMemo } from "react";
 import axios from "Utilities/axios";
 import { COLUMNS } from './Components/Columns';
 import { filterModel, TableWithFilter } from 'Components/Tables';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 const CampList = () => {
     const [Camps, setCamps] = useState([])
@@ -23,9 +26,14 @@ const CampList = () => {
 
     return (
         <>
-            <h1>CampList</h1>
-            {Camps.map(value => value.title)}
-            <TableWithFilter columns={columns} data={Camps} filterModel={filter} />
+            <Row>
+                <Col></Col>
+                <Col md={8}>
+                    <h1>營隊報名</h1>
+                    <TableWithFilter columns={columns} data={Camps} filterModel={filter} />
+                </Col>
+                <Col></Col>
+            </Row>
         </>)
 }
 

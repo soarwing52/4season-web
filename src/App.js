@@ -1,12 +1,17 @@
 import './App.scss';
-import { BrowserRouter as Router, Route, Routes, } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 
 import { WithoutNavbar, WithNavbar, WithSidebar } from './Components/Bars/NavbarControl';
 
 import Home from './Pages/Home';
 import NotFound from './Pages/NotFound';
-import Login from './Pages/Login';
-import Register from './Pages/Register';
+
+import {
+  Login,
+  Register,
+  Disclaimers,
+  Payment
+} from 'Pages/User';
 
 import {
   CampList,
@@ -21,12 +26,18 @@ function App() {
       <div className="App">
         <Routes>
           <Route element={<WithoutNavbar />}>
-            <Route path={home_url + "/Login"} element={<Login />} />
+
           </Route>
           <Route element={<WithNavbar />}>
             <Route path={home_url + "/"} element={<Home />} />
+            <Route path='/Home' element={<Navigate replace to="/" />} />
             <Route path="*" element={<NotFound />} />
-            <Route path={home_url + "/Register"} element={<Register />} />
+
+            <Route path={home_url + "User/Login"} element={<Login />} />
+            <Route path={home_url + "User/Register"} element={<Register />} />
+            <Route path={home_url + "User/Disclaimers"} element={<Disclaimers />} />
+            <Route path={home_url + "User/Payment"} element={<Payment />} />
+
             <Route path={home_url + "/Camp/List"} element={<CampList />} />
             <Route path={home_url + "/Camp/Register/:id"} element={<CampRegister />} />
             <Route path={home_url + "/Camp/Detail/:id"} element={<CampDetail />} />

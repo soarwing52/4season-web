@@ -1,36 +1,80 @@
-import React, { useState, useEffect } from "react";
-import { useParams } from 'react-router-dom';
-import { CampParticipant } from '../Models';
-import axios from 'Utilities/axios';
+import React, { useState, useEffect } from 'react';
+import axios from "Utilities/axios";
+import validator from 'validator';
 import { toDashDate } from 'Utilities/DateUtil';
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 
-const CampRegister = () => {
-    let { id } = useParams();
-    const [participantData, setParticipantData] = useState(new CampParticipant());
+function Register() {
+    const [participantData, setParticipantData] = useState({});
+    const [AllValues, setAllValues] = useState({
+        UserName: '',
+        PasswordHash: '',
+        ConfirmPassword: '',
+        CName: '',
+        Email: '',
+        Dept: '',
+        Division: '',
+        Title: '',
+        Phone: '',
+        Ext: '',
+        Mobile: '',
+        Gender: ''
+    })
 
-    const Register = async () => {
-        axios.post("camps/CampParticipant/", participantData)
-            .then(result => {
-                window.location.href = "./"
+    const changeHandler = e => {
+        console.log(e.target.id)
+        console.log(e.target.value)
+        setAllValues({ ...AllValues, [e.target.id]: e.target.value })
+        console.log(AllValues)
+    }
+
+    const checkPasswordConsistency = () => {
+        if (!passwordConsistency()) {
+            alert("密碼不一致")
+            return
+        }
+    }
+
+    function passwordConsistency() {
+        return AllValues.ConfirmPassword === AllValues.PasswordHash
+    }
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        if (!passwordConsistency()) {
+            alert("密碼不一致!");
+            return;
+        }
+        const data = AllValues;
+        data["Gender"] = data.Gender === "Male" ? true : false;
+        data["RegDate"] = new Date().toISOString();
+        delete data.ConfirmPassword
+        console.log(data)
+        await axios.post('Identity/User', data)
+            .then(rsp => {
+                alert("帳號建立成功，等管理員核准後即可登入");
+                window.location.href = '/'
             })
             .catch(err => {
-                console.error(err)
-                alert(err.message)
+                console.log(err)
             })
     }
 
+    const validateEmail = (e) => {
+        var email = e.target.value
+
+        if (!validator.isEmail(email)) {
+            alert("Email輸入錯誤請重新輸入")
+        }
+    }
     useEffect(() => {
-        setParticipantData(prev => ({ ...prev, camp: id }))
-        Promise.all([
-        ])
     }, [])
+
     return (
         <>
-            <h1 className="titleBar">營隊報名</h1>
             <Form className="form-RegisterCamp">
                 <Row className="mb-3">
                     <Col md={4}>
@@ -232,23 +276,15 @@ const CampRegister = () => {
                         </Form.Group>
                     </Col>
                 </Row>
-                <Row>
-                    <Form.Label>
-                        溯溪經歷
-                    </Form.Label>
-                    <Form.Control as="textarea" rows={3}
-                        value={participantData.experience}
-                        onChange={(e) => { setParticipantData(prev => ({ ...prev, experience: e.target.value })) }} />
-                </Row>
                 <Row style={{ margin: '10px' }}>
                     <Button onClick={Register}>
-                        送出報名
+                        儲存資料
                     </Button>
                 </Row>
 
             </Form>
-
-        </>)
+        </>
+    );
 }
 
-export default CampRegister;
+export default Register;

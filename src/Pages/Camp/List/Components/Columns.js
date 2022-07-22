@@ -12,38 +12,33 @@ export const COLUMNS = [
         }
     },
     {
+        Header: '報名日期',
+        Cell: (props) => {
+            let rowData = props.row.original;
+            let disabled = !DateIsBetween(rowData.register_date_start, rowData.register_date_due)
+            const click = () => {
+                window.location.href = `Detail/${rowData.id}`
+            }
+            return (
+                <>
+                    <p>{toDashDate(rowData.register_date_start, "-")} ~ {toDashDate(rowData.register_date_due, "-")}</p>
+                    <Button disabled={disabled} onClick={click}>
+                        報名
+                    </Button>
+                </>
+            )
+        }
+    },
+    {
         Header: '活動日期',
         Cell: (props) => {
             let rowData = props.row.original;
             return (
                 <>
-                    <p>{toDashDate(rowData.register_date_start, "-")}</p>
-                    <p>{toDashDate(rowData.register_date_due, "-")}</p>
+                    <p>{toDashDate(rowData.trip_date_start, "-")} ~ {toDashDate(rowData.trip_date_end, "-")}</p>
                 </>
             )
         }
     },
-    {
-        Header: '結束日期',
-        accessor: 'trip_date_end'
-    },
-    {
-        Header: '報名開始日期',
-        accessor: 'register_date_start',
-        Cell: ({ cell: { value } }) => {
-            return <p>{toDashDate(value, "-")}</p>
-        }
-    },
-    {
-        Header: '報名',
-        Cell: (props) => {
-            let rowData = props.row.original;
-            let disabled = !DateIsBetween(rowData.register_date_start, rowData.register_date_due)
-            return (
-                <>
-                    <Button disabled={disabled}>報名</Button>
-                </>
-            )
-        }
-    },
+
 ]

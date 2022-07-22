@@ -8,7 +8,7 @@ import ReCAPTCHA from "react-google-recaptcha";
 function Login() {
     const [UserName, setUserName] = useState('');
     const [Password, setPassword] = useState('');
-    const [isVerified, setVerified] = useState(false);
+    const [isVerified, setVerified] = useState(true);
 
     let recaptcha_site_key = process.env.REACT_APP_RECAPTCHA_SITE_KEY;
 
@@ -24,13 +24,13 @@ function Login() {
 
     async function LoginBtn(e) {
         e.preventDefault();
-        await axios.post("Identity/Login", {
-            "UserName": UserName,
-            "PasswordHash": Password
+        await axios.post("auth/login/", {
+            "username": UserName,
+            "password": Password
         }).then(rsp => {
-            // console.log(rsp)
+            console.log(rsp)
             setToken(rsp.data.token, 'jwt')
-            window.location.href = './Lobby'
+            window.location.href = 'Home'
         }).catch(err => {
             alert(err)
         })
@@ -42,7 +42,7 @@ function Login() {
 
     const RegisterBtn = useCallback((e) => {
         e.preventDefault();
-        window.location.href = './Register'
+        window.location.href = './Disclaimers'
     })
 
     return (
