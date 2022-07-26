@@ -1,5 +1,6 @@
 import { getCookie, RemoveCookie } from 'Utilities/cookie';
 import jwt_decode from "jwt-decode";
+import { userContext } from "Components/Authentication/userContext";
 
 const AuthTokenName = 'jwt';
 
@@ -26,8 +27,7 @@ function GetUser() {
 
     if (token) {
         const jwtUser = jwt_decode(token);
-        user["name"] = jwtUser["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"]
-        user["roles"] = jwtUser["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"]
+        user["name"] = jwtUser["username"]
     }
     return user;
 }

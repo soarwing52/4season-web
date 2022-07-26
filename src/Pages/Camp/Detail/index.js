@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from 'react-router-dom';
 import axios from "Utilities/axios";
 import { Table, Button } from 'react-bootstrap';
+import { UserIsLoggedIn, GetUser } from 'Components/Authentication/UserStatus';
 import Notice from "./notice"
 
 const CampDetail = () => {
@@ -11,12 +12,17 @@ const CampDetail = () => {
     const GetCamp = async () => {
         let result = await axios.get(`camps/Camp/${id}`);
         let data = result.data;
-        console.log(data)
         setCamp(data)
     }
 
     const toRegister = () => {
         window.location.href = `${window.location.origin}/Camp/Register/${id}`
+    }
+
+    const StaffRegister = () => {
+        if (UserIsLoggedIn()) {
+            return <Button>報名工作人員</Button>
+        }
     }
 
     useEffect(() => {
@@ -29,6 +35,7 @@ const CampDetail = () => {
         <>
             <h1>{Camp?.title}</h1>
             <Notice />
+            <h3>總召：{Camp.get_owner_name}</h3>
             <h3>領隊：{Camp.get_leaders}</h3>
             參加人員：
             <Button onClick={toRegister}>報名參加營隊</Button>
@@ -62,7 +69,7 @@ const CampDetail = () => {
                 </tbody>
             </Table>
             工作人員：
-            <Button>報名工作人員</Button>
+            {StaffRegister()}
             <Table striped bordered hover>
                 <thead>
                     <tr>

@@ -6,9 +6,6 @@ import Row from 'react-bootstrap/Row';
 
 const Disclamers = () => {
     const history = useNavigate();
-    const agree = () => {
-        history.push('/User/Register');
-    }
     return (
         <>
             <div style={{ textAlign: "center" }}>

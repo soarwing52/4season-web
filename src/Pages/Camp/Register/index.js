@@ -7,15 +7,18 @@ import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
+import { useNavigate } from "react-router-dom";
+
 
 const CampRegister = () => {
     let { id } = useParams();
     const [participantData, setParticipantData] = useState(new CampParticipant());
+    const history = useNavigate();
 
     const Register = async () => {
         axios.post("camps/CampParticipant/", participantData)
             .then(result => {
-                window.location.href = "./"
+                history("../Finance/PaymentForm")
             })
             .catch(err => {
                 console.error(err)
@@ -225,9 +228,9 @@ const CampRegister = () => {
                                 緊急聯絡人電話
                             </Form.Label>
                             <Col md={8}>
-                                <Form.Control type="text" name="e_relationship" size="4" required=""
-                                    value={participantData.emergency_contact_relation}
-                                    onChange={(e) => { setParticipantData(prev => ({ ...prev, emergency_contact_relation: e.target.value })) }} />
+                                <Form.Control type="text" name="e_phone" size="4" required=""
+                                    value={participantData.emergency_contact_phone}
+                                    onChange={(e) => { setParticipantData(prev => ({ ...prev, emergency_contact_phone: e.target.value })) }} />
                             </Col>
                         </Form.Group>
                     </Col>

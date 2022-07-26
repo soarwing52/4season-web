@@ -2,7 +2,7 @@ import Cookies from 'universal-cookie';
 const cookies = new Cookies();
 
 function setToken(token, name) {
-  cookies.set(name, token, { path: './' });
+  cookies.set(name, token, { path: '/' });
 };
 
 function getCookie(name) {
@@ -13,7 +13,7 @@ function getCookie(name) {
 };
 
 function RemoveCookie(name) {
-  cookies.remove(name, { path: "./" });
+  cookies.remove(name, { path: "/" });
 }
 
 export { setToken, getCookie, RemoveCookie };
