@@ -22,7 +22,6 @@ const PaymentList = () => {
 
     return (
         <>
-            <p>payment</p>
             <BasicTable columns={columns} data={Payments}></BasicTable>
         </>
     )

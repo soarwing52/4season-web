@@ -33,7 +33,7 @@ const NavigationBar = () => {
             return (
                 <>
                     <Navbar.Text>
-                        <p style={{ marginLeft: 'auto', marginRight: 0 }}>歡迎！ 會員：{user.name}</p>
+                        <p style={{ marginLeft: 'auto', marginRight: 10, marginTop: 'auto', marginBottom: 'auto' }}>歡迎！ 會員：{user.name}</p>
                     </Navbar.Text>
                     <Button onClick={Logout}>登出</Button>
                 </>
@@ -60,55 +60,50 @@ const NavigationBar = () => {
         // checkUserStatus()
     }, []);
     return (
-        <div className="header_bo">
-            <div className="col-md-12 col-sm-7">
-                <Navbar expand="lg" variant="navigation navbar navbar-expand-md" sticky="top">
-                    <Container>
-                        <Navbar.Brand href={home}>
-                            <img src={ImgLogo} alt="logo" height="90" />台灣四季溯溪協會
-                        </Navbar.Brand>
-                        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-                        <Navbar.Collapse id="basic-navbar-nav">
-                            <Nav className="me-auto">
-                                <NavDropdown title="行程報名" id="basic-nav-dropdown">
-                                    <NavDropdown.Item href="#action/3.1">
-                                        活動報名
-                                    </NavDropdown.Item>
-                                    <NavDropdown.Divider />
-                                    <NavDropdown.Item href={`${home}/Camp/List`} >
-                                        營隊報名
-                                    </NavDropdown.Item>
-                                </NavDropdown>
-                                <NavDropdown title="幹部群組" id="basic-nav-dropdown">
-                                    <NavDropdown.Item href="#action/3.1">
-                                        秘書長
-                                    </NavDropdown.Item>
-                                    <NavDropdown.Divider />
-                                    <NavDropdown.Item>
-                                        財務
-                                    </NavDropdown.Item>
-                                    <NavDropdown.Item href={`${home}/Finance/PaymentList`}>
-                                        匯款確認
-                                    </NavDropdown.Item>
-                                    <NavDropdown.Divider />
-                                    <NavDropdown.Item href="#action/3.2">
-                                        領隊
-                                    </NavDropdown.Item>
-                                    <NavDropdown.Divider />
-                                    <NavDropdown.Item href={`${home}/Camp/List`} >
-                                        總務
-                                    </NavDropdown.Item>
-                                </NavDropdown>
-                            </Nav>
-                        </Navbar.Collapse>
-                        <Navbar.Collapse className="justify-content-end">
-                            {UserStatus()}
-                        </Navbar.Collapse>
-                    </Container>
-                </Navbar>
-
-            </div >
-        </div >
+        <Navbar expand="lg" variant="navigation navbar navbar-expand-md dark color-nav" sticky="top" bg="dark">
+            <Container fluid >
+                <Navbar.Brand href={home} className="nav-brand-fourseason">
+                    <img src={ImgLogo} alt="logo" height="90" />台灣四季溯溪協會
+                </Navbar.Brand>
+                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Collapse id="basic-navbar-nav">
+                    <Nav className="me-auto">
+                        <NavDropdown title="行程報名" id="basic-nav-dropdown">
+                            <NavDropdown.Item href="#action/3.1">
+                                活動報名
+                            </NavDropdown.Item>
+                            <NavDropdown.Divider />
+                            <NavDropdown.Item href={`${home}/Camp/List`} >
+                                營隊報名
+                            </NavDropdown.Item>
+                        </NavDropdown>
+                        <NavDropdown title="幹部群組" id="basic-nav-dropdown">
+                            <NavDropdown.Item href="#action/3.1">
+                                秘書長
+                            </NavDropdown.Item>
+                            <NavDropdown.Divider />
+                            <NavDropdown.Item>
+                                財務
+                            </NavDropdown.Item>
+                            <NavDropdown.Item href={`${home}/Finance/PaymentList`}>
+                                匯款確認
+                            </NavDropdown.Item>
+                            <NavDropdown.Divider />
+                            <NavDropdown.Item href="#action/3.2">
+                                領隊
+                            </NavDropdown.Item>
+                            <NavDropdown.Divider />
+                            <NavDropdown.Item href={`${home}/Camp/List`} >
+                                總務
+                            </NavDropdown.Item>
+                        </NavDropdown>
+                    </Nav>
+                </Navbar.Collapse>
+                <Navbar.Collapse className="justify-content-end">
+                    {UserStatus()}
+                </Navbar.Collapse>
+            </Container>
+        </Navbar>
     )
 }
 

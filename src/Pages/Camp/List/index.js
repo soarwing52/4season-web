@@ -10,9 +10,9 @@ const CampList = () => {
 
     const columns = useMemo(() => COLUMNS, []);
     const GetCampList = async () => {
-        let result = await axios.get("camps/Camp/");
+        let result = await axios.get("camps/active_camp_list");
         let data = result.data;
-        setCamps(data.results)
+        setCamps(data)
     }
     let filter = new filterModel()
     filter.key = "title"

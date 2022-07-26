@@ -34,10 +34,9 @@ export const COLUMNS = [
         Header: '功能',
         Cell: (props) => {
             let rowData = props.row.original;
-            const [user, setUser] = useContext(userContext);
+            const [user,] = useContext(userContext);
 
             const confirmPayment = () => {
-                console.log("UUU", user)
                 let temp = {
                     "confirmed": true,
                     "confirm_person": user.name
@@ -49,20 +48,18 @@ export const COLUMNS = [
             const isConfirmed = () => {
                 if (rowData.confirmed) {
                     return (
-                        <Badge>匯款已確認</Badge>
+                        <h5>
+                            <Badge bg="secondary">匯款已確認</Badge>
+                        </h5>
                     )
                 }
                 else {
                     return (
                         <>
-                            <p>
-                                PP {user.name}
-                            </p>
                             <Button onClick={confirmPayment}>
                                 確認匯款
                             </Button>
                         </>
-
                     )
                 }
             }
